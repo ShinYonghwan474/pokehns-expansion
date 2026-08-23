@@ -4979,6 +4979,8 @@ static const struct LevelUpMove sBayleefLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sMeganiumLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_WEATHER_BALL),
+    LEVEL_UP_MOVE( 0, DAZZLING_GLEAM),
     LEVEL_UP_MOVE( 0, MOVE_PETAL_DANCE),
     LEVEL_UP_MOVE( 1, MOVE_PETAL_DANCE),
     LEVEL_UP_MOVE( 1, MOVE_PETAL_BLIZZARD),
@@ -5105,6 +5107,7 @@ static const struct LevelUpMove sTotodileLevelUpLearnset[] = {
     LEVEL_UP_MOVE(16, MOVE_BUBBLE_BEAM),
     LEVEL_UP_MOVE(20, MOVE_ICE_FANG),
     LEVEL_UP_MOVE(22, MOVE_FLAIL),
+    LEVEL_UP_MOVE(24, MOVE_AQUA_JET),
     LEVEL_UP_MOVE(27, MOVE_CRUNCH),
     LEVEL_UP_MOVE(29, MOVE_CHIP_AWAY),
     LEVEL_UP_MOVE(34, MOVE_SLASH),
@@ -5126,6 +5129,7 @@ static const struct LevelUpMove sCroconawLevelUpLearnset[] = {
     LEVEL_UP_MOVE(15, MOVE_SCARY_FACE),
     LEVEL_UP_MOVE(21, MOVE_ICE_FANG),
     LEVEL_UP_MOVE(24, MOVE_FLAIL),
+    LEVEL_UP_MOVE(27, MOVE_AQUA_JET),
     LEVEL_UP_MOVE(30, MOVE_CRUNCH),
     LEVEL_UP_MOVE(33, MOVE_CHIP_AWAY),
     LEVEL_UP_MOVE(39, MOVE_SLASH),
@@ -5149,6 +5153,7 @@ static const struct LevelUpMove sFeraligatrLevelUpLearnset[] = {
     LEVEL_UP_MOVE(15, MOVE_SCARY_FACE),
     LEVEL_UP_MOVE(21, MOVE_ICE_FANG),
     LEVEL_UP_MOVE(24, MOVE_FLAIL),
+    LEVEL_UP_MOVE(28, MOVE_AQUA_JET),
     LEVEL_UP_MOVE(32, MOVE_CRUNCH),
     LEVEL_UP_MOVE(37, MOVE_CHIP_AWAY),
     LEVEL_UP_MOVE(45, MOVE_SLASH),
