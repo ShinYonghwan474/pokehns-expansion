@@ -7435,9 +7435,12 @@ static inline uq4_12_t GetSameTypeAttackBonusModifier(struct BattleContext *ctx)
 // Utility Umbrella holders take normal damage from what would be rain- and sun-weakened attacks.
 static uq4_12_t GetWeatherDamageModifier(struct BattleContext *ctx)
 {
-    if (ctx->weather == B_WEATHER_NONE)
+    bool32 selfSun = (GetBattlerAbility(ctx->battlerAtk) == ABILITY_MEGA_SOL
+                       && ctx->holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA);
+
+    if (ctx->weather == B_WEATHER_NONE && !selfSun)
         return UQ_4_12(1.0);
-    if (GetMoveEffect(ctx->move) == EFFECT_HYDRO_STEAM && (ctx->weather & B_WEATHER_SUN) && ctx->holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
+    if (GetMoveEffect(ctx->move) == EFFECT_HYDRO_STEAM && ((ctx->weather & B_WEATHER_SUN) || selfSun) && ctx->holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
         return UQ_4_12(1.5);
     if (ctx->holdEffectDef == HOLD_EFFECT_UTILITY_UMBRELLA)
         return UQ_4_12(1.0);
@@ -7448,7 +7451,7 @@ static uq4_12_t GetWeatherDamageModifier(struct BattleContext *ctx)
             return UQ_4_12(1.0);
         return (ctx->moveType == TYPE_FIRE) ? UQ_4_12(0.5) : UQ_4_12(1.5);
     }
-    if (ctx->weather & B_WEATHER_SUN)
+    if ((ctx->weather & B_WEATHER_SUN) || selfSun)
     {
         if (ctx->moveType != TYPE_FIRE && ctx->moveType != TYPE_WATER)
             return UQ_4_12(1.0);
@@ -9526,12 +9529,13 @@ bool32 PickupHasValidTarget(enum BattlerId battler)
 
 bool32 IsBattlerWeatherAffected(enum BattlerId battler, u32 weatherFlags)
 {
+    if (GetBattlerAbility(battler) == ABILITY_MEGA_SOL && (weatherFlags & B_WEATHER_SUN))
+        return GetBattlerHoldEffect(battler) != HOLD_EFFECT_UTILITY_UMBRELLA;
+
     if (gBattleWeather & weatherFlags && HasWeatherEffect())
     {
-        // given weather is active -> check if its sun, rain against utility umbrella (since only 1 weather can be active at once)
         if (gBattleWeather & (B_WEATHER_SUN | B_WEATHER_RAIN) && GetBattlerHoldEffect(battler) == HOLD_EFFECT_UTILITY_UMBRELLA)
-            return FALSE; // utility umbrella blocks sun, rain effects
-
+            return FALSE;
         return TRUE;
     }
     return FALSE;
