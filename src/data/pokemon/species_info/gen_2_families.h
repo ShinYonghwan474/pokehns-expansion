@@ -4077,6 +4077,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sMismagiusLevelUpLearnset,
         .teachableLearnset = sMismagiusTeachableLearnset,
+    #if P_FAMILY_FLUTTER_MANE
+        .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_FLUTTER_MANE}),
+    #endif
     },
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MISDREAVUS
