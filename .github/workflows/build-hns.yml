@@ -1,0 +1,27 @@
+name: Build HnS ROM (Mega Evolution enabled)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-hns:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi gcc-arm-none-eabi libnewlib-arm-none-eabi libpng-dev python3
+
+      - name: Build HnS ROM
+        run: make hns -j$(nproc)
+
+      - name: Find and upload the built ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokehns-mega-evolution
+          path: |
+            *.gba
+            **/*.gba
