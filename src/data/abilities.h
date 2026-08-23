@@ -2433,11 +2433,17 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeTraced = TRUE,
     },
 
-
     [ABILITY_DRAGONIZE] =
     {
         .name = _("Dragonize"),
         .description = COMPOUND_STRING("Normal moves turn Dragon."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_MEGA_SOL] =
+    {
+        .name = _("MEGA SOL"),
+        .description = COMPOUND_STRING("Acts as permanent personal sun."),
         .aiRating = 8,
     },
 };
