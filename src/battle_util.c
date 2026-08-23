@@ -6383,7 +6383,7 @@ static inline u32 CalcMoveBasePower(struct BattleContext *ctx)
             basePower *= 2;
         break;
     case EFFECT_WEATHER_BALL:
-        if (ctx->weather & B_WEATHER_ANY)
+        if ((ctx->weather & B_WEATHER_ANY) || GetBattlerAbility(battlerAtk) == ABILITY_MEGA_SOL)
             basePower *= 2;
         break;
     case EFFECT_PURSUIT:
